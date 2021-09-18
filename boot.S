@@ -136,7 +136,7 @@ init_stack:
     la	sp, 0x083FC
 init_data:
 	
-	j	vSyscallInit
+	jal main
 
 /* When trap is an interrupt, this function is called */
 interrupt:
