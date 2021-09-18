@@ -77,16 +77,15 @@
 # define LOAD     lw
 # define REGBYTES 4
 
-boot:
-    li t6, 0x1800
-    csrw mstatus, t6
-    j _mstart
+/*the ,"ax",@progbits tells the assembler that the section is allocatable ("a"), executable ("x") and contains data ("@progbits"). */
 
 	.align 6
 	.section .text,"ax",@progbits
 	.globl _mstart
 /* Startup code */
 _mstart:
+	li t6, 0x1800
+    csrw mstatus, t6
     la t0, trap_entry
     csrw mtvec, t0
     li	x1, 0
@@ -122,7 +121,7 @@ _mstart:
     li	x31, 0
 
     /* initialize global pointer */
-    la	gp, _gp
+    la	gp, __global_pointer$
 
 //init_bss:
     /* init bss section */
