@@ -133,7 +133,8 @@ _mstart:
 
 init_stack:
     /* set stack pointer */
-    la	sp, 0x083FC
+    //la	sp, 0x083FC
+    la sp, _stack_top
 init_data:
 	
 	jal main
