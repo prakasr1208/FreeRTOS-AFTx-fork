@@ -1,4 +1,4 @@
-CROSS   = /media/raghul1208/Z8/riscv64-unknown-elf-gcc-8.3.0-2020.04.0-x86_64-linux-ubuntu14/bin/riscv64-unknown-elf-
+CROSS   = /mnt/c/Users/Danie/Documents/Purdue_Coursework/Fall_2021/SoCET_VIP/RTOS/riscv64-unknown-elf-gcc-8.3.0-2020.04.0-x86_64-linux-ubuntu14/bin/riscv64-unknown-elf-
 CC      = $(CROSS)gcc
 OBJCOPY = $(CROSS)objcopy
 ARCH    = $(CROSS)ar
@@ -23,11 +23,11 @@ LDFLAGS = -nostartfiles -Tfake_rom.lds \
 	-Xlinker --defsym=__stack_size=300 \
 	$(MARCH) $(MABI)
 
-ifeq ($(DEBUG), 1)
-    CFLAGS += -Og -ggdb3
-else
+#ifeq ($(DEBUG), 1)
+    #CFLAGS += -Og -ggdb3
+#else
     CFLAGS += -Os
-endif
+#endif
 
 SRCS = main.c \
         syscalls.c \
@@ -37,7 +37,7 @@ SRCS = main.c \
 	./Source/timers.c \
 	./Source/port.c
 
-ASMS = start.S \
+ASMS = boot.S \
 	./Source/portasm.S
 
 OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o) $(ASMS:%.S=$(BUILD_DIR)/%.o)

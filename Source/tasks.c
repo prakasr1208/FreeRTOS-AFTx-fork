@@ -373,7 +373,7 @@ PRIVILEGED_DATA static List_t xPendingReadyList;                         /*< Tas
 #endif
 
 /* Other file private variables. --------------------------------*/
-PRIVILEGED_DATA static volatile UBaseType_t uxCurrentNumberOfTasks = ( UBaseType_t ) 0U;
+/*PRIVILEGED_DATA*/ static volatile UBaseType_t uxCurrentNumberOfTasks = ( UBaseType_t ) 0U;
 PRIVILEGED_DATA static volatile TickType_t xTickCount = ( TickType_t ) configINITIAL_TICK_COUNT;
 PRIVILEGED_DATA static volatile UBaseType_t uxTopReadyPriority = tskIDLE_PRIORITY;
 PRIVILEGED_DATA static volatile BaseType_t xSchedulerRunning = pdFALSE;
@@ -589,16 +589,16 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB ) PRIVILEGED_FUNCTION;
         configASSERT( puxStackBuffer != NULL );
         configASSERT( pxTaskBuffer != NULL );
 
-        #if ( configASSERT_DEFINED == 1 )
-            {
-                /* Sanity check that the size of the structure used to declare a
-                 * variable of type StaticTask_t equals the size of the real task
-                 * structure. */
-                volatile size_t xSize = sizeof( StaticTask_t );
-                configASSERT( xSize == sizeof( TCB_t ) );
-                ( void ) xSize; /* Prevent lint warning when configASSERT() is not used. */
-            }
-        #endif /* configASSERT_DEFINED */
+        //#if ( configASSERT_DEFINED == 1 )
+        //    {
+        //        /* Sanity check that the size of the structure used to declare a
+        //         * variable of type StaticTask_t equals the size of the real task
+        //         * structure. */
+        //        volatile size_t xSize = sizeof( StaticTask_t );
+        //        configASSERT( xSize == sizeof( TCB_t ) );
+        //        ( void ) xSize; /* Prevent lint warning when configASSERT() is not used. */
+        //    }
+        //#endif /* configASSERT_DEFINED */
 
         if( ( pxTaskBuffer != NULL ) && ( puxStackBuffer != NULL ) )
         {
@@ -935,7 +935,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
      * updated. */
     taskENTER_CRITICAL();
     {
-        uxCurrentNumberOfTasks++;
+        //uxCurrentNumberOfTasks++;
 
         if( pxCurrentTCB == NULL )
         {
@@ -1852,6 +1852,13 @@ void vTaskStartScheduler( void )
 {
     BaseType_t xReturn;
 
+    // I believe this is how to write in-line assembly commands, but the symbol to use might be "__asm__"
+    /*asm (	// Want to enable interrupts by unmasking the corresponding bit in MSTATUS register (I believe this is bit 3 => 0x3)
+
+	csrrsi zero, mstatus, 0x4	// csrrsi: CSR (status register) Read and Set bits Immediate
+	
+	);		// Might want to move this command to the end of the function so context switching starts after initializing idle process
+	*/
     /* Add the idle task at the lowest priority. */
     #if ( configSUPPORT_STATIC_ALLOCATION == 1 )
         {

@@ -132,13 +132,32 @@ void vApplicationIdleHook( void );
  */
 void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
 
-StaticTimer_t xTimerBuffer;
+//StaticTimer_t xTimerBuffer;
+
+#define STACK_SIZE 300
+
+StaticTask_t xTaskBuffer;
+
+StackType_t xStack[ STACK_SIZE ];
 
 /*-----------------------------------------------------------*/
 
+
+void vTaskDemo(void * pvParameters) {
+	for (;;){
+		// infinite loop
+	}
+
+	vTaskDelete(NULL);
+}
+
+
 int main( void )
 {
-TimerHandle_t xCheckTimer = NULL;
+
+	//prvSetupHardware();	
+
+	//TimerHandle_t xCheckTimer = NULL;
 
 	/* Create the standard demo tasks, including the interrupt nesting test
 	tasks. */
@@ -148,22 +167,24 @@ TimerHandle_t xCheckTimer = NULL;
 
 	/* Create the software timer that performs the 'check' functionality,
 	as described at the top of this file. */
-	xCheckTimer = xTimerCreateStatic( NULL,				/* A text name, purely to help debugging. */
-					( mainCHECK_TIMER_PERIOD_MS ),		/* The timer period, in this case 3000ms (3s). */
-					pdTRUE,					/* This is an auto-reload timer, so xAutoReload is set to pdTRUE. */
-					( void * ) 0,				/* The ID is not used, so can be set to anything. */
-					prvCheckTimerCallback,			/* The callback function that inspects the status of all the other tasks. */
-					&xTimerBuffer
-					);
+	//xCheckTimer = xTimerCreateStatic( NULL,				/* A text name, purely to help debugging. */
+	//				( mainCHECK_TIMER_PERIOD_MS ),		/* The timer period, in this case 3000ms (3s). */
+	//				pdTRUE,					/* This is an auto-reload timer, so xAutoReload is set to pdTRUE. */
+	//				( void * ) 0,				/* The ID is not used, so can be set to anything. */
+	//				prvCheckTimerCallback,			/* The callback function that inspects the status of all the other tasks. */
+	//				&xTimerBuffer
+	//				);
 
 	/* If the software timer was created successfully, start it.  It won't
 	actually start running until the scheduler starts.  A block time of
 	zero is used in this call, although any value could be used as the block
 	time will be ignored because the scheduler has not started yet. */
-	if( xCheckTimer != NULL )
+	/*if( xCheckTimer != NULL )
 	{
 		xTimerStart( xCheckTimer, mainDONT_BLOCK );
-	}
+	}*/
+
+	xTaskCreateStatic( vTaskDemo, NULL, STACK_SIZE, NULL, 0, xStack, &xTaskBuffer );
 
 
 	/* Start the kernel.  From here on, only tasks and interrupts will run. */
