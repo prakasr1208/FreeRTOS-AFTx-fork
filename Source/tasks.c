@@ -690,9 +690,9 @@ static void prvInitialiseNewTask( TaskFunction_t pxTaskCode,
     StackType_t * pxTopOfStack;
     UBaseType_t x;
 
-    #if ( portUSING_MPU_WRAPPERS == 1 )
+    //#if ( portUSING_MPU_WRAPPERS == 1 )
         /* Should the task be created in privileged mode? */
-        BaseType_t xRunPrivileged;
+   /*     BaseType_t xRunPrivileged;
 
         if( ( uxPriority & portPRIVILEGE_BIT ) != 0U )
         {
@@ -703,15 +703,15 @@ static void prvInitialiseNewTask( TaskFunction_t pxTaskCode,
             xRunPrivileged = pdFALSE;
         }
         uxPriority &= ~portPRIVILEGE_BIT;
-    #endif /* portUSING_MPU_WRAPPERS == 1 */
+    *///#endif /* portUSING_MPU_WRAPPERS == 1 */
 
     /* Avoid dependency on memset() if it is not required. */
-    #if ( tskSET_NEW_STACKS_TO_KNOWN_VALUE == 1 )
-        {
+    //#if ( tskSET_NEW_STACKS_TO_KNOWN_VALUE == 1 )
+    //    {
             /* Fill the stack with a known value to assist debugging. */
-            ( void ) memset( pxNewTCB->pxStack, ( int ) tskSTACK_FILL_BYTE, ( size_t ) ulStackDepth * sizeof( StackType_t ) );
-        }
-    #endif /* tskSET_NEW_STACKS_TO_KNOWN_VALUE */
+    //      ( void ) memset( pxNewTCB->pxStack, ( int ) tskSTACK_FILL_BYTE, ( size_t ) ulStackDepth * sizeof( StackType_t ) );
+    //    }
+    //#endif /* tskSET_NEW_STACKS_TO_KNOWN_VALUE */
 
     /* Calculate the top of stack address.  This depends on whether the stack
      * grows from high memory to low (as per the 80x86) or vice versa.
@@ -933,9 +933,10 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
 {
     /* Ensure interrupts don't access the task lists while the lists are being
      * updated. */
-    taskENTER_CRITICAL();
+    
+	taskENTER_CRITICAL();
     {
-        //uxCurrentNumberOfTasks++;
+        uxCurrentNumberOfTasks++;
 
         if( pxCurrentTCB == NULL )
         {

@@ -277,10 +277,10 @@ static StackType_t uxTimerTaskStack[ configTIMER_TASK_STACK_DEPTH ];
          * configUSE_TIMERS is set to 1.  Check that the infrastructure used by the
          * timer service task has been created/initialised.  If timers have already
          * been created then the initialisation will already have been performed. */
-        prvCheckForValidListAndQueue();
+        //prvCheckForValidListAndQueue();
 
-        if( xTimerQueue != NULL )
-        {
+        //if( xTimerQueue != NULL )
+        //{
             #if ( configSUPPORT_STATIC_ALLOCATION == 1 )
                 {
                     StaticTask_t * pxTimerTaskTCBBuffer = NULL;
@@ -302,13 +302,13 @@ static StackType_t uxTimerTaskStack[ configTIMER_TASK_STACK_DEPTH ];
                     }
                 }
             #endif /* configSUPPORT_STATIC_ALLOCATION */
-        }
+        /*}
         else
         {
             mtCOVERAGE_TEST_MARKER();
         }
 
-        configASSERT( xReturn );
+        configASSERT( xReturn );*/
         return xReturn;
     }
 /*-----------------------------------------------------------*/

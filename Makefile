@@ -4,7 +4,7 @@ OBJCOPY = $(CROSS)objcopy
 ARCH    = $(CROSS)ar
 
 BUILD_DIR       = build
-MARCH = -march=rv32imc
+MARCH = -march=rv32im
 MABI = -mabi=ilp32
 CPPFLAGS = \
 	-I .  \
@@ -16,7 +16,8 @@ CFLAGS  =  $(MARCH) $(MABI) -static -fvisibility=hidden -nostdlib -nostartfiles 
 	-ffunction-sections \
 	-fdata-sections \
 	-fno-builtin-printf \
-	-lgcc
+	-lgcc	\
+	-fno-stack-protector
 ASFLAGS = -mcmodel=medany $(MARCH) $(MABI)
 LDFLAGS = -nostartfiles -Tfake_rom.lds \
 	-Xlinker --gc-sections \
@@ -24,9 +25,10 @@ LDFLAGS = -nostartfiles -Tfake_rom.lds \
 	$(MARCH) $(MABI)
 
 #ifeq ($(DEBUG), 1)
-    #CFLAGS += -Og -ggdb3
+    CFLAGS += -Og -ggdb3
 #else
-    CFLAGS += -Os
+    #CFLAGS += -Os
+    #CFLAGS += -O0
 #endif
 
 SRCS = main.c \

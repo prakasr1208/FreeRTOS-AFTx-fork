@@ -78,10 +78,28 @@ SECTIONS
 		*(.srodata .srodata.*)
 
 		. = ALIGN(4);
+		/*_edata = .;*/
+		
+
+		. = ALIGN(4);
+		_bss = .;
+		_bss_lma = _bss;
+		*(.sbss*)
+		*(.gnu.linkonce.sb.*)
+		*(.bss .bss.*)
+		*(.gnu.linkonce.b.*)
+		*(COMMON)
+
+		. = ALIGN(4);
+		_ebss = .;
+
 		_edata = .;
+
 	} >ram AT>ram
 
-	.bss.align :
+	
+
+	/*.bss.align :
 	{
 		. = ALIGN(4);
 		_bss = .;
@@ -103,6 +121,7 @@ SECTIONS
 		. = ALIGN(4);
 		_ebss = .;
 	} >ram AT>ram
+	*/
 
 	. = ALIGN(8);
 	_end = .;

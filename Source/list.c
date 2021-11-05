@@ -85,6 +85,7 @@ void vListInitialiseItem( ListItem_t * const pxItem )
 void vListInsertEnd( List_t * const pxList,
                      ListItem_t * const pxNewListItem )
 {
+	int DEBUG = 1;
     ListItem_t * const pxIndex = pxList->pxIndex;
 
     /* Only effective when configASSERT() is also defined, these tests may catch

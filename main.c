@@ -134,7 +134,7 @@ void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
 
 //StaticTimer_t xTimerBuffer;
 
-#define STACK_SIZE 300
+#define STACK_SIZE 100		// Keep small b/c idle task is small
 
 StaticTask_t xTaskBuffer;
 

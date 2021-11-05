@@ -126,7 +126,7 @@ _mstart:
 //init_bss:
     /* init bss section */
     //la	a0, _bss
-    //la	a1, _statuses-4 /* section end is actually the start of the next section */
+    //la	a1, _ebss /* section end is actually the start of the next section */
     //li	a2, 0x0
     //jal	fill_block
 
@@ -161,6 +161,7 @@ trap_entry:
 	STORE	t0, 0x0(sp)
 	csrr	t0, mcause
 	blt	t0,x0,interrupt //checks if most significant bit is 1
+	//__DEBUG1: j __DEBUG1
 	LOAD	t0, 0x0(sp)
 	addi	sp, sp, REGBYTES
 	mret
