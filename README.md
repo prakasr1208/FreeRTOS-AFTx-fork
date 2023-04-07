@@ -127,6 +127,6 @@ Currently, stuck at prvInitialiseNewTask's memset in an infinite loop. Need to c
 ![My Image]("https://github.com/prakasr1208/FreeRTOS-AFTx-fork/blob/master/2022-02-02 210239.png")
 ![My Image](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/blob/master/csrrtos.png)
 ![My Image](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/blob/master/memsetrtos.png)
+Bootup Flow
 ![My Image](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/blob/master/frertosboot.png)
-![My Image](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/blob/master/screenshot.png)
 
