@@ -123,3 +123,10 @@ RTOSDemo.axf compiled to meminit.bin and SOC_ROM.sv created.
 RTL simulator runs through bootloader, and xTaskCreateStatic and most of prvInitialiseNewTask.
 
 Currently, stuck at prvInitialiseNewTask's memset in an infinite loop. Need to check #define macros for task notifications
+
+![Screenshot](screenshot.png)
+![Screenshot](screenshot.png)
+![Screenshot](screenshot.png)
+![Screenshot](screenshot.png)
+![Screenshot](screenshot.png)
+![Screenshot](screenshot.png)
