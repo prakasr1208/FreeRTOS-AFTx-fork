@@ -124,10 +124,10 @@ RTL simulator runs through bootloader, and xTaskCreateStatic and most of prvInit
 
 Currently, stuck at prvInitialiseNewTask's memset in an infinite loop. Need to check #define macros for task notifications
 
-![alt text]("https://github.com/prakasr1208/FreeRTOS-AFTx-fork/2022-02-02 210239.png")
-![alt text](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/csrrtos.png)
-![alt text](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/memsetrtos.png)
-![alt text](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/frertosboot.png)
-![alt text](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/screenshot.png)
-![alt text](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/screenshot.png)
+![My Image]("https://github.com/prakasr1208/FreeRTOS-AFTx-fork/2022-02-02 210239.png")
+![My Image](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/csrrtos.png)
+![My Image](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/memsetrtos.png)
+![My Image](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/frertosboot.png)
+![My Image](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/screenshot.png)
+![My Image](https://github.com/prakasr1208/FreeRTOS-AFTx-fork/screenshot.png)
 
